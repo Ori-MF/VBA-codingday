@@ -1,0 +1,27 @@
+Sub CommandButton_InventPhotos_Click()
+    Dim Photo As String
+    Dim MyPhoto As Picture
+    Dim Rng As Range
+    Dim Item As Range
+    
+    '''Dim WS_Inventory As Worksheet
+    '''Set WS_Inventory = ThisWorkbook.Sheets("Inventory")
+    
+    Set Rng = Range("Q3:Q10")
+    For Each Item In Rng
+        Photo = Item.Offset(0, -1)
+        If Photo = "" Then Rng.Select
+            Set MyPhoto = ActiveSheet.Pictures.Insert(Photo)
+            '''''Set MyPhoto = WS_Inventory.Pictures.Insert(pic)
+            
+            With MyPhoto
+            .ShapeRange.LockAspectRatio = msoFalse
+            .Width = Item.Width
+            .Height = Item.Height
+            .Top = Rows(Item.Row).Row
+            .Left = Columns(Item.Column).Left
+            .Placement = x1MoveAndSize
+            End With
+            
+        Next
+End Sub
