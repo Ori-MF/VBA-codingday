@@ -1,0 +1,19 @@
+''''''''''''WHAT WE ARE DOING 
+'''''''''''' is making a boton for you click and open a sheet 
+'''''''''''' if you út the right password you enter, if not your get "access denied"
+
+Private Sub CommandButton1_Click()
+ If TextBox_CONTRASEÑA_RESUMEN.Value = "1234" Then
+        Unload Me
+        Dim WS_RESUMEN As Worksheet
+    For Each WS_RESUMEN In Worksheets
+        If WS_RESUMEN.Visible = xlSheetVeryHidden Then
+        WS_RESUMEN.Visible = xlSheetVisible
+        End If
+    Next
+     Else
+    Me.Hide
+        Retry = MsgBox("Acceso denegado. Contraseña incorrecta.")
+    End If
+End Sub
+    
